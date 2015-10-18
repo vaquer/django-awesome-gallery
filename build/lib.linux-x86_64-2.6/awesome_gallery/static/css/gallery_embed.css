@@ -1,0 +1,29 @@
+.gallery_embed { position: relative; overflow: hidden; margin: 20px auto 0 auto; border-radius: 4px; width: 95%; height: 489px; background-color: black;}
+.gallery_embed .embed { display: none; }
+.gallery_embed .error { width: 100%; height: 100%; text-align: center; padding-top: 35%; color: white;}
+.gallery_embed .load { display: block; background-image: url("http://s.rgcdn.net/static/gallstatic/img/loading.gif"); background-size: auto 300px; background-repeat: no-repeat; background-color: black; width: 100%; height: 100%; background-position: 50% 50%; }
+.gallery_embed ul.elements { position: relative; margin: 0; padding: 0; max-height: 489px; list-style: none; background: #000;}
+.gallery_embed ul.elements li {position: relative; display: block; float: left; margin: 0; padding: 0; width: 100%; max-height: 489px; background: #000; line-height: 350px;}
+
+.gallery_embed a.control_prev, a.control_next {position: absolute; top: 40%; z-index: 999; display: block; padding: 4% 3%; width: auto; 
+        height: auto; background: #2a2a2a; color: #fff; text-decoration: none; font-weight: 600; font-size: 18px; opacity: 0.8; cursor: pointer;}
+.gallery_embed a.control_prev:hover, a.control_next:hover { opacity: 1; -webkit-transition: all 0.2s ease;}
+.gallery_embed a.control_prev { border-radius: 0 2px 2px 0;}
+.gallery_embed a.control_next { right: 0; border-radius: 2px 0 0 2px;}
+.gallery_embed .imgShow { border: none;}
+.gallery_embed .description { position: absolute; bottom: 0; background-color: black; margin: 0; width: 100%; text-align: center; font-size: 16px; opacity: 0.95; color: white;}
+
+.gallery_embed .embed {opacity: 0;}
+.gallery_embed .slider-actions {right: 5px; top: 5px; display: none; transition: all 0.35s cubic-bezier(0.33, 0.66, 0.66, 1); position: absolute; z-index: 99;}
+.gallery_embed .slider-actions ul { list-style: none;}
+.gallery_embed .slider-actions ul li {background-image: url("http://s.rgcdn.net/static/gallstatic/img/hud-sprite.png"); background-size: auto 30px; border-radius: 50%; border: 1px solid #fff; height: 30px; margin: 0 7px 0 0; width: 30px; float:left;}
+.gallery_embed .slider-actions ul li.thumbs { background-position: -399px 0; }
+.gallery_embed .slider-actions ul li.thumbs:hover { background-position: -121px 0; background-color: white;}
+.gallery_embed .slider-actions ul li.full { background-position: -438px 0;}
+.gallery_embed .slider-actions ul li.full:hover { background-position: -161px 0; background-color: white;}
+.gallery_embed .slider-actions ul li:last-child { margin: 0;}
+.gallery_embed .slider-actions ul li.mini { background-position: -281px 0;}
+.gallery_embed .slider-actions ul li.mini:hover { background-position: -3px 0; background-color: white;}
+.gallery_embed .expand { width: 100%; height: 100%; opacity: 0; background-color: black; }
+.gallery_embed .expand .content {position: relative;}
+.gallery_embed .nextLoad {position: absolute; bottom: 0; background-color: black; margin: 0; width: 100%; text-align: center; font-size: 16px; opacity: 0.75; color: white; cursor: pointer;}

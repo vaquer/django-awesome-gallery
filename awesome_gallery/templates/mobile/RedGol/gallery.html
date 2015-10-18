@@ -1,0 +1,48 @@
+{% extends "site/base_main.html" %}
+{% block javascript_include %}"gallery/apps/RedGol/mobile"{% endblock %}
+{% load cms %}
+{% load dfp %}
+
+{% block google_dfp_codesection %}
+    {% register_slots "ros" "320x50_Top,320x50_Middle,320x50_Bottom" %}
+{% endblock %}
+
+{% block title %}{{gallery.name}}{% endblock %}
+{% block content %}
+    <div class="margin_banner">{% include "banners/mobile-320x50-home-single.html" %}</div>
+    <a href="{{gallery.get_absolute_url}}"><h2 class="foto_gallery_title">{{gallery.name}}</h2></a>
+    <div class="foto_gallery_numero_de_fotos">{{gallery.count}} Fotos</div>
+    {% for foto in fotos %}
+        {% include "banners/banners_eplanning_v4_loop.html" with loop=forloop.counter%}
+        <article class="foto_gallery_article">
+            <header class="foto_gallery_header">
+                <a href="{{foto.get_absolute_url}}">{{foto.get_foto_thumb_mobile}}</a>
+            </header>
+            {% include "includes/botones_compartir.html" with item=foto %}
+        </article>
+    {% endfor %}
+    <div class="pagination">
+        {% if fotos.has_previous %}
+            <a class="pagination_link left" href="{{gallery.get_absolute_url}}/p/{{fotos.previous_page_number}}/">&laquo;</a>
+        {% endif %}
+        Pag. {{p}} de {{pg_obj.num_pages}}
+        {% if fotos.has_next %}
+            <a class="pagination_link right" href="{{gallery.get_absolute_url}}/p/{{fotos.next_page_number}}/">&raquo;</a>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block css_files %}
+    <link href="/static/gallstatic/css/mobile_base_gal.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/css/redgolmobile2-botones.css" type="text/css" rel="stylesheet"/>
+    <link href="/static/js/gallery/lib/JustifiedGallery/dist/css/justifiedGallery.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
+{% block meta_tags %}
+    <link rel="canonical" href="http://redgol.cl{{gallery.get_absolute_url}}"/>
+    {% if fotos.has_previous %}
+        <link rel="prev" href="http://redgol.cl{{gallery.get_absolute_url}}/p/{{fotos.previous_page_number}}/">
+    {% endif %}
+    {% if fotos.has_next %}
+        <link rel="next" href="http://redgol.cl{{gallery.get_absolute_url}}/p/{{fotos.next_page_number}}/">
+    {% endif %}
+{% endblock %}

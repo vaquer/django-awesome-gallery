@@ -1,0 +1,93 @@
+{% extends "site/base.html" %}
+{% load redgol %}
+{% load dfp %}
+{% block javascript_include %}"gallery/apps/RedGol/fotosingle-mobile"{% endblock %}
+
+{% block google_dfp_codesection %}
+    {% register_slots "ros" "320x50_Top,320x50_Middle,320x50_Bottom" %}
+{% endblock %}
+
+{% block main_base %}
+   <div class="foto_single_contenedor">
+      <header class="foto_single_header">
+         <a class="foto_single_header_volver" href="{{gallery.get_absolute_url}}">Volver</a>
+         <span class="foto_single_header_text">{% if related_url == False %}{{foto.order}} de {{gallery.count}} {% else %} Relacionados {% endif %}</span>
+         <span class="foto_single_header_loading"><img alt="loading" src="/static/img/mobile/mloading.gif"/></span>
+      </header>
+      <span class="helper_fs"></span>
+      {% if prev_item %}
+         <a href="{{prev_item}}">
+           <img id="button-prev" class="prev" src="/static/gallstatic/img/arrow-left.png" data-target="{{prev_item}}">
+         </a>
+      {% endif %}
+
+      {% if related_url == False %}
+          {% if not foto.is_video %}
+            <img class="pic_mobile" src="{{foto.get_foto_thumb_safe_mobile}}" id="swipeft" alt="{% if gallery.ugc %}{{foto.name}}{% else %}#{{foto.order}}{% endif %} - {{gallery.name}} - DaleAlbo" data-pic="{'width': '{{data_pic.width}}', 'height': '{{data_pic.height}}'}" style="display:none;">
+         {% else %}
+            {{img}}
+         {% endif %}
+      {% else %}
+         <div class="related-div">
+            {% for pic in pics %}
+               {{pic|safe}}
+            {% endfor %}
+         </div>
+      {% endif %}
+
+      {% if next_item %}
+         <a href="{{next_item}}">
+            <img id="button-next" class="next" src="/static/gallstatic/img/arrow-right.png" data-target="{{next_item}}">
+         </a>
+        {% endif %}
+      <h2 class="foto_single_titulo">
+         <a href="{{gallery.get_absolute_url}}"> {% if foto.about %}{{foto.about}}{% else %}{{gallery.name}}{% endif %}</a>
+      </h2>
+      <!--<span class="foto_single_comentarios"><img src="/static/img/mobile/globito_comentarios.png" alt="glocms">{{post.count_comentarios}}</span>-->
+   </div>
+   {% if banner_url != Nones %}
+      <div class="banner">
+         <span class="close"></span>
+         <div class="container">
+            <iframe src="{{banner_url}}" frameborder="0" scroll="no" width="110%"></iframe>
+         </div>
+      </div>
+   {% endif %}
+   <script> 
+      var RGFoto = {
+         url_siguiente: "{{next_item}}",
+         url_anterior: "{{prev_item}}"
+      };
+   </script>
+{% endblock %}
+{% block open_graph_tags %}
+   <meta property="og:title" content="{{foto.name}} - {{gallery.name}} - {{settings.SITE_NAME}}"/> 
+   <meta property="og:type" content="article"/> 
+   <meta property="og:url" content="http://{{settings.FQDN}}{{foto.get_absolute_url}}"/> 
+   {% if foto.fecha > settings.FECHA_CAMBIO_OG_IMAGE %}
+      <meta property="og:image" content="{{pic_1024}}"/> 
+   {% else %}
+      <meta property="og:image" content="{{pic_470}}"/>
+   {% endif %}
+   <meta property="og:site_name" content="{{settings.SITE_NAME}}"/> 
+   <meta property="og:description" content="Galeria multimedia {{settings.SITE_NAME}}"/> 
+{% endblock %}
+{% block twitter_sumarycards_tags %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="{{settings.TWITTER_USER}}">
+<meta name="twitter:creator" content="{{settings.TWITTER_USER}}">
+<meta name="twitter:title" content="{{foto.name}} - {{gallery.name}} - {{settings.SITE_NAME}}">
+<meta name="twitter:description" content="Galeria multimedia {{settings.SITE_NAME}}">
+{% if foto.fecha > settings.FECHA_CAMBIO_OG_IMAGE %}
+    <meta name="twitter:image:src" content="{{pic_1024}}">
+{% else %}
+    <meta name="twitter:image:src" content="{{pic_470}}">
+{% endif %}
+{% endblock %}
+
+{% block css_files %}
+   <link href="/static/gallstatic/css/mobile_base_single.css" type="text/css" rel="stylesheet"/>
+{% endblock %}
+{% block meta_tags %}
+   <link rel="canonical" href="http://redgol.cl{{foto.get_absolute_url}}"/>
+{% endblock %}

@@ -1,0 +1,37 @@
+<div class="singleContainerEmbedMobile">
+    <div class="slider-actions">
+        <div style="float: left; margin-top: 5px; margin-left: 15px;">
+            <iframe src="//www.facebook.com/plugins/like.php?href={{SocialUri}}&amp;width&amp;locale=en_US&amp;layout=button&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=35&amp;appId={{FACEBOOK_APP_ID}}" scrolling="no" frameborder="0" style="border:none; overflow:hidden;height:21px; width: 49px;" allowTransparency="true"></iframe>
+        </div>
+        <ul style="float: right; margin-left: 5px;"><li class="mini closer"></li></ul>
+    </div>
+        {{#prev}}
+            <img id="button-prev" class="prev" src="/static/gallstatic/img/arrow-left.png">
+        {{/prev}}
+       {{#next}}
+            <img id="button-next" class="next" src="/static/gallstatic/img/arrow-right.png" style="z-index: 9999999999;">
+        {{/next}}
+        {{#related_url}}
+            <div class="related">
+                {{{related_galeries}}}
+            </div>
+        {{/related_url}}
+        {{^related_url}}
+            {{#is_video}}
+                <div id="swipeft" class="video_containers gal-video"><iframe class="IframeEmbed" width="{{width_new}}px" height="{{height_new}}px" src="{{url_embed}}" frameborder="0" allowfullscreen="" style="z-index: 10;"></iframe></div>
+            {{/is_video}}
+            {{^is_video}}
+                <img id="swipeft" class="img_embed" src="{{url_thumb}}" style="width:{{width_new}}px; height: {{height_new}}px; margin: {{margin-top}}px auto;">
+            {{/is_video}}
+
+            {{#is_video}}
+                <div class="caption" style="margin-left: 10px; position:initial;">
+            {{/is_video}}
+            {{^is_video}}
+                 <div class="caption">
+            {{/is_video}}
+                <span class="number">{{order}} de {{count_g}}</span>
+            </div>
+        {{/related_url}}
+        <div class="footer"><span class="foto_single_header_loading"><img alt="loading" src="/static/img/mobile/mloading.gif" style="z-index: 9999999999;"></span></div>
+</div>

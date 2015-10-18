@@ -1,0 +1,66 @@
+{% extends "base_2_col.html" %}
+{% load dalealbo %}
+{% load dfp %}
+{% load gallery_embed %}
+{% block title %}{{tag}}{% endblock %}
+
+{% block register_slots %}
+    {% register_slots "ros" "728x90,580x90,300x250_A,950x50,300x250_B" %}
+{% endblock %}
+
+{% block banner_728 %}
+    {% include_slot "728x90" %}
+{% endblock %}
+
+{% block banner_950 %}
+    {% include_slot "950x50" %}
+{% endblock %}
+
+{% block col_left %}
+	<div id="FotoMetagallery">	
+		<h2 class="foto_title">{{tag.tag|undo_slug|title}}</h2>
+		<p class="gall_count">{{up.count}} Galerias</p>
+		<table border="0" cellspacing="0">
+		{% for gal in gallerylist %}
+			<tr>
+				<td class="gall_image">
+					<a href="{{gal.get_absolute_url}}">
+						<img alt="{{gal.name}}" src="{{gal.last_foto.get_foto_thumb_da}}" width="180">
+					</a>
+				</td>
+				<td>
+					<div class="gall_detail"> 
+						<h3><a href="{{gal.get_absolute_url}}">{{ gal.name }}</a></h3>
+						<span>Publicada hace {{gal.date|timesince}}</span> <br>
+						<span>&Uacute;ltima foto pulicada {{gal.last_foto.date|timesince}}</span><br>
+						<p>{{gal.count}} Foto{{gal.count|pluralize}}</p>
+					</div>
+				</td>
+			</tr>
+		{% endfor %}
+		</table>
+		{% include "includes/pagination-gallery.html" %}
+	</div>
+	{% include "banners/banner-galerias-468x60.html" %}
+	
+{% endblock %}
+
+{% block col_right %}
+	{% include "includes/box_prox_partido.html" %}
+    {% include "includes/facebook_fan_box.html" %}
+    {% include "includes/box_ultimo_partido.html" %}
+{% endblock %}
+
+{% block open_graph_tags %}
+        <meta property="og:title" content="{{tag|striptags}}"/>
+        <meta property="og:type" content="article"/>
+        <meta property="og:url" content="http://{{settings.FQDN}}/gallery/galeries/{{tag}}"/>
+        <meta property="og:image" content="http://{{settings.FQDN}}/filez/img/dalealbo-socialmedia-icon.jpg"/>
+        <meta property="og:site_name" content="Dale Albo"/>
+        <meta property="og:description" content="Fotos Dale Albo"/>
+{% endblock %}
+
+{% block meta_tags %}
+<link rel="canonical" href="http://{{settings.FQDN}}/gallery/galeries/{{tag}}" />
+<meta name="title" content="{{tag|striptags}}" />
+{% endblock %}

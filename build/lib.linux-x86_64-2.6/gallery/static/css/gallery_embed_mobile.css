@@ -1,0 +1,40 @@
+.gallery_embed { height: 300px }
+.gallery_embed a.control_prev, a.control_next { color: white !important;}
+.gallery_embed .expand .content { margin-right: 0; padding: 0;}
+.gallery_embed .description { top: 94%; font-size: 18px; padding-bottom: 5px;}
+
+.gallery_embed .slider-actions ul li.thumbs { background-position: -400px 0; }
+.gallery_embed .slider-actions ul li.thumbs:hover { background-position: -122px 0; background-color: white;}
+.gallery_embed .slider-actions ul li.full { background-position: -439px 0;}
+.gallery_embed .slider-actions ul li.full:hover { background-position: -162px 0; background-color: white;}
+.gallery_embed .slider-actions ul li.mini { background-position: -282px 0;}
+.gallery_embed .slider-actions ul li.mini:hover { background-position: -4px 0; background-color: white;}
+.gallery_embed .nextLoad { font-size: 20px; padding-bottom: 10px; }
+
+.single_gallery { overflow: hidden; position: absolute; width: 0; height: 0; left: 0; top: 0; opacity: 0; background: rgba(0,0,0,.8); -webkit-transition: opacity 0.2s cubic-bezier(0,0,0,1); -moz-transition: opacity 0.2s cubic-bezier(0,0,0,1); transition: opacity 0.2s cubic-bezier(0,0,0,1); }
+.single_gallery.visible { width: 100%; height: 100%; opacity: 1; z-index: 9999999; position: fixed; overflow-x: hidden; overflow-y: scroll; margin-bottom: 25px; }
+.single_gallery.visible .container { position: relative; margin: 0 auto; top: 1%; height: 99%; width: 100%; background-color: black;}
+.single_gallery .singleContainerEmbedMobile { text-align: center; padding-bottom: 1%;}
+.single_gallery .slider-actions ul li {background-image: url("http://s.rgcdn.net/static/gallstatic/img/hud-sprite.png"); background-size: auto 30px; border-radius: 50%; border: 1px solid #fff; height: 30px; margin: 0 7px 0 0; width: 30px; float:left;}
+.single_gallery .slider-actions ul li.mini { background-position: -282px 0;}
+.single_gallery .slider-actions ul li.mini:hover { background-position: -4px 0; background-color: white;}
+
+#button-prev { position: absolute; top: 47%; cursor: pointer; left: 5px; z-index:9999999; }
+#button-next { position: absolute; top: 47%; cursor: pointer; right: 5px; z-index:9999999; }
+.prev, .next { height: 50px; }
+
+.single_gallery .socialGallery { position: absolute; bottom: 3%; display: block; width: 400px;}
+.single_gallery ul.pf-share-gallery { list-style: none; }
+.single_gallery ul.pf-share-gallery li { float: left;}
+.foto_single_header_loading {
+  line-height: 36px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 3px;
+  visibility: hidden;
+}
+.footer{height: 25px;
+  width: 25px;
+  position: absolute;
+  bottom: 50%;
+  left: 50%;}

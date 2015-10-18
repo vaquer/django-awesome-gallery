@@ -1,0 +1,68 @@
+.gallery-top .big-title { margin-left: 14px;}
+.gallery-top .big-title .gallery-title{ font-size: 40px;}
+.gallembed { height: 424px; margin: 0 0 0 2px; padding: 0; position: relative; overflow: hidden;}
+.gallitem { display: inline-block; position: absolute; left: -9px; z-index: 0; top: 0;}
+#disqus_thread { padding: 5px; }
+a.galeria{ text-align: center; font-weight: bold; padding-bottom: 10px; float: left; width: 175px; background-color: white; padding: 11px 11px 0px 11px; /* border: solid 1px #aaa; */ margin: 0 0 20px 39px; color: black; }
+a.galeria:hover { text-decoration: none; }
+
+/******Single Gallery********/
+.single_gallery { overflow: hidden; position: absolute; width: 0; height: 0; left: 0; top: 0; opacity: 0; background: rgba(0,0,0,.8); -webkit-transition: opacity 0.2s cubic-bezier(0,0,0,1); -moz-transition: opacity 0.2s cubic-bezier(0,0,0,1); transition: opacity 0.2s cubic-bezier(0,0,0,1);}
+.single_gallery.visible { width: 100%; height: 100%; opacity: 1; z-index: 999999;  position: fixed; overflow-x: hidden; overflow-y: scroll; margin-bottom: 25px;}
+.single_gallery.closeWindow { width: 0; height: 0; left: 0; top: 0; opacity: 0; }
+.single_gallery.visible .container { position: relative; margin: 0 auto; top: 1%; height: 89%; background: #fff; width: 1050px; padding: 30px; -webkit-box-shadow: 0 1px 8px #000; -moz-box-shadow: 0 1px 8px #000; box-shadow: 0 1px 8px #000; -webkit-animation: lightbox 0.75s cubic-bezier(0,0,0,1); -moz-animation: lightbox 0.5s cubic-bezier(0,0,0,1); webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;  }
+.single_gallery.visible .container h3 { background-color: #B80707; border-radius: 5px 5px 0 0; color: #fff; font-size: 20px; font-weight: bold; margin: -30px -30px 20px; padding: 15px 30px; text-shadow: rgba(0, 0, 0, 0.4492); text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.45); letter-spacing: -2px;}
+.single_gallery.visible .container a.closer { background: #000; position: absolute; top: -10px; left: -10px; line-height: 0;color: #fff; text-align: center; font-weight: bold; border: 2px solid #fff; padding: 10px 8px 9px; border-radius: 30px; -webkit-box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 1px; -moz-box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 1px; box-shadow: rgba(0, 0, 0, 0.3) 1px 1px 1px;}
+.single_gallery.visible .container a.closer:hover { text-decoration: none; }
+.single_gallery.visible .container .content { float: left; display: inline-block; width: 100%; text-align: center;}
+
+.single_gallery.visible .container .gal-videos { height: 617px; padding-bottom: 26px; width: 96%; margin-left: 17px;}
+
+.single_gallery.visible .container .aboutpic { font-family: sans-serif; margin: 5px 0 0 0; color: #E9E7E7; padding: 3px; font-size: 10px; position: relative; top: -30px; background-color: black; opacity: 0.7;}
+.single_gallery.visible .container .prev { display: inline; float: left; margin-left: 30px;}
+.single_gallery.visible .container .next { display: inline; float: right; margin-right: 30px;}
+.single_gallery.visible .container .prev a {color: white; font-weight: bold;}
+.single_gallery.visible .container .next a {color: white; font-weight: bold;}
+
+.single_gallery .comments { float: right; overflow: hidden; margin-left: 10px; width: 365px;}
+.single_gallery .comments h2 { font-size: 15px; margin: 5px 0px 0px 10px; font-weight: bold;}
+.single_gallery .comments h3 { margin: 5px 0px 0px 10px; font-size: 12px; }
+.single_gallery .comments h4 { font-size: 11px; margin: 5px 0px 0px 10px; font-style: italic;}
+.single_gallery .comments .banner { width: 98%; height: 280px; /*background-color: red;*/ margin: 0 0 0 5px; }
+
+.single_gallery .containerC { display: inline-block; float: right; margin-top: 10px; margin-left: 15px; height: 259px; width: 365px; overflow: auto; top: 233px; }
+.gallery { height: 170px !important; width: 28% !important; margin: 5px; float: left; display: none; }
+.gallery_jg { height: 160px !important; }
+.gallery h3 { font-size: 12px !important; margin: 0;}
+
+#sliderin  .about { bottom: 35px; color: #FFF; position: relative; background-color: #000; height: 31px; margin: 0; display: block; opacity: 0.8; font-size: 11px; text-align: center;}
+.caption  { color:#FAFAFA; font-family:Verdana; text-transform:uppercase; font-size:12px; display: block; position: fixed; bottom: 50px; left: 425px;}
+.caption .number { background-color: #474747; opacity: 0.7; padding: 0 10px 0 10px;}
+
+#sliderin { margin: 0; padding: 0; float: left;}
+#sliderin .related {margin-left: 11%;}
+
+#button-prev { position: absolute; top: 47%; cursor: pointer; left: -86px;}
+#button-next { position: absolute; top: 47%; cursor: pointer; right: -83px;}
+.gal-videochrome { height: 626px !important; padding-bottom: 0px !important; width: 96%; margin-left: 0px !important;}
+.prev { height: 50px; }
+.next { height: 50px; }
+.icono_fb{ background-image: url('http://s.rgcdn.net/static/gallstatic/img/icono-face.png?5aab23873da0'); background-repeat: no-repeat; background-size: 9px 19px; width: 14px; height: 19px;  float: left; padding: 0px; }
+.icono_tw { background-image: url('http://s.rgcdn.net/static/gallstatic/img/icono-twitter.png'); background-size: 23px 16px; background-repeat: no-repeat; width: 23px; height: 16px; /* display: block; */ float: left; /* margin-right: 7px; */ margin-left: -4px;}
+.slider-img .related { padding-top: 50px;}
+.arelated { float: left; display: block; margin-right: 5px; margin-top: 5px; max-height: 250px; height: 250px; }
+.arelated:hover { text-decoration: none; }
+.footrelated { display: none; position: relative; bottom: 19px; margin: 0px; padding: 0; opacity: 0.8; background-color: black; color: white; font-weight: bold; font-size: 11px;}
+.socialbtn { margin-top: 29px; z-index: 9999999;}
+.imgShow.vertical{ margin-left: 190px !important; }
+.caption.vertical { margin-left: 168px !important; }
+.gallery_rg { height: 170px !important; width: 28% !important; margin: 5px; float: left; display: none;
+    -webkit-transition: -webkit-transform .15s linear; -webkit-box-shadow: 0 3px 6px rgba(0,0,0,.5);
+    -moz-box-shadow: 0 3px 6px rgba(0,0,0,.5);  padding: 11px 11px 25px 11px;
+}
+.gallery_rg h3 { font-size: 13px; margin-top: 2px; color: black; }
+.gallery_rg h3 a { color: black;}
+.gallery_rg h3 a:hover { text-decoration: none;}
+.single_gallery .socialGallery { position: absolute; bottom: 3%; display: block; width: 400px;}
+.single_gallery ul.pf-share-gallery { list-style: none; }
+.single_gallery ul.pf-share-gallery li { float: left;}
