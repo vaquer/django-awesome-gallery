@@ -1,4 +1,4 @@
-Metadata-Version: 1.0
+Metadata-Version: 1.1
 Name: django-awesome-gallery
 Version: 0...1
 Summary: Simple and awesome gallery media system for Django
@@ -8,6 +8,7 @@ Author-email: akura11.tt@gmail.com
 License: UNKNOWN
 Description: UNKNOWN
 Platform: UNKNOWN
+Classifier: Environment :: Web Environment
 Classifier: Framework :: Django
 Classifier: Intended Audience :: Developers
 Classifier: Intended Audience :: System Administrators

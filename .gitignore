@@ -1,0 +1,5 @@
+*.pyc
+build/
+dist/
+django_awesome_gallery.egg-info/
+
