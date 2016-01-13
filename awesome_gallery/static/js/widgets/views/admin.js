@@ -141,7 +141,7 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
                 });
 
                 //Send request to enabled items
-                $.post('/gallery/admin/enabled/item/', {list_items: ids_items.join()})
+                $.post('/gallery/admin/item/status/true/', {list_items: ids_items.join()})
                     .done(function(response){
                         if(!response.error){
                             _.each(array_items, function(li){
@@ -172,7 +172,7 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
                 });
 
                 //Send request to disabled items
-                $.post('/gallery/admin/disabled/item/', {list_items: ids_items.join()})
+                $.post('/gallery/admin/item/status/false/', {list_items: ids_items.join()})
                     .done(function(response){
                         if(!response.error){
                             _.each(array_items, function(li){

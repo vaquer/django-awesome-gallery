@@ -21,7 +21,6 @@ urlpatterns = [
     url(r'^gallery/admin/add/description/key/?$', 'awesome_gallery.views.admin_adding_description_item', {}, 'widget_add_description_key'),
     url(r'^gallery/admin/delete/key/?$', 'awesome_gallery.views.admin_delete_item_aws', {}, 'widget_delete_key'),
     url(r'^gallery/admin/reorder/?$', 'awesome_gallery.views.admin_reorder_items', {}, 'widget_reorder_item'),
-    url(r'^gallery/admin/enabled/item/?$', 'awesome_gallery.views.admin_enabled_item', {}, 'widget_enabled_item'),
-    url(r'^gallery/admin/disabled/item/?$', 'awesome_gallery.views.admin_disabled_item', {}, 'widget_disabled_item'),
+    url(r'^gallery/admin/item/status/(?P<status>[-_a-zA-Z0-9]+)/?$', 'awesome_gallery.views.admin_change_status_item', {}, 'widget_enabled_item'),
     # url(r'^fotos/(?P<gallery>[-_a-zA-Z0-9]+)/$'),
 ]

@@ -7,7 +7,7 @@ from .aws import AWSManager
 
 class ItemAdmin(admin.ModelAdmin):
     form = ItemForm
-    list_display = ('name', 'short_description', 'item_permalink', 'item_preview', 'high_definition', 'vertical', 'enabled')
+    list_display = ('name', 'short_description', 'item_permalink', 'high_definition', 'vertical', 'enabled',)
     save_on_top = True
     search_fields = ['name', 'slug']
     ordering = ('-date', )
@@ -39,11 +39,7 @@ class ItemAdmin(admin.ModelAdmin):
 
     class Media:
             js = (
-                '/static/js/libs/jquery/jquery.js',
-                '//api.filepicker.io/v1/filepicker.js',
-                '/static/js/libs/tiny-mce/3.5.11/tiny_mce.js',
-                '/static/js/libs/tiny-mce/textareas.js',
-                'http://yui.yahooapis.com/combo?2.7.0/build/utilities/utilities.js&2.7.0/build/button/button-min.js&2.7.0/build/container/container-min.js&2.7.0/build/cookie/cookie-min.js',
+                'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js',
                 '/static/js/admin/admin.js'
             )
 admin.site.register(Item, ItemAdmin)
@@ -83,29 +79,4 @@ class GalleryAdmin(admin.ModelAdmin):
             # Setting the values to widget Gallery
             form.base_fields['images'].initial = obj or None
             return form
-
-    class Media:
-            js = (
-                '/static/js/libs/jquery/jquery.js',
-                '//api.filepicker.io/v1/filepicker.js',
-                '/static/js/libs/tiny-mce/3.5.11/tiny_mce.js',
-                '/static/js/libs/tiny-mce/textareas.js?545',
-                '/static/js/lib/jquery/jquery-ui-1.11.2.custom/jquery-ui.min',
-                '/static/js/lib/jquery/jquery.upload',
-                '/static/js/lib/canvas-to-blob/canvas-to-blob.min',
-                '/static/js/lib/load-image/load-image-meta',
-                '/static/js/lib/load-image/load-image',
-                '/static/js/lib/load-image/load-image-exif-map',
-                '/static/js/lib/load-image/load-image-exif',
-                '/static/js/lib/load-image/load-image-ios',
-                '/static/js/lib/jquery/jquery.ui.widget',
-                '/static/js/lib/jquery/jquery.iframe-transport',
-                '/static/js/lib/jquery/jquery.fileupload-process',
-                '/static/js/lib/jquery/jquery.fileupload-image',
-                '/static/js/lib/jquery/jquery.fileupload',
-                '/static/js/libs/underscore/underscore-min',
-                '/static/js/libs/backbone/backbone-min',
-                '/static/js/libs/bootstrap/bootstrap.min',
-                '/static/js/admin.js'
-            )
 admin.site.register(Gallery, GalleryAdmin)

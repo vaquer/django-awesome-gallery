@@ -7,16 +7,6 @@ from .aws import AWSManager
 from django.conf import settings
 
 
-class FormInput(forms.Form):
-    imageWidget = forms.FileField()
-
-
-class ItemWidgetForm(forms.ModelForm):
-    class Meta:
-        model = Item
-        excludes = ['gallery', 'key_name']
-
-
 class ItemForm(forms.ModelForm):
     preview = forms.CharField(widget=PreviewImageGall, label='Preview', required=False)
     image = forms.FileField(required=False, label='Imagen')
@@ -36,6 +26,7 @@ class GalleryForm(forms.ModelForm):
 
     class Meta:
         model = Gallery
+        fields = ('name', 'short_description', 'administrator', 'tags', 'enabled', 'images',)
 
 
 class UGCItemForm(forms.ModelForm):

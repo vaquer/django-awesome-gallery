@@ -10,7 +10,6 @@ from django.conf import settings
 from .models import Gallery, Item
 from .utils import get_range_page
 from .aws import AWSManager
-from .decode import decode_path_gal
 from .forms import UGCItemForm
 from .pagination import UberPaginator
 from django.contrib.admin.views.decorators import staff_member_required
@@ -20,17 +19,13 @@ from django.db.models.loading import get_model
 from dateutil.relativedelta import relativedelta
 from django.core.files.images import get_image_dimensions
 from django.core.files import File
-from django.utils import simplejson
 from django.core.cache import cache
 from django.db.models.loading import get_model
 
 
-def get_img_size(path, size):
-    decode_path_html = decode_path_gal(path, size)
-    return format_html(decode_path_html if decode_path_html is not None else path)
-
 def galleries_by_tag(request, tag):
-    Tag_model = get_model(settings.APP_SOURCE, settings.TAGS_MODEL)
+    Tag_model = get_model(settings.AWESOME_APP_BLOG_NAME, settings.AWESOME_APP_MODEL_TAG)
+
     if not tag:
         raise Http404
 
@@ -46,7 +41,7 @@ def galleries_by_tag(request, tag):
         return HttpResponseRedirect('/')
     p = int(p)
 
-    up = UberPaginator(gals_full_list, settings.GALERIAS_FOTOS_BY_PAGE)
+    up = UberPaginator(gals_full_list, settings.AWESOME_GALLERY_PAGINATOR_ELEMENTS)
     try:
         page = up.page(p)
     except (EmptyPage, InvalidPage):
@@ -64,7 +59,7 @@ def galleries_by_tag(request, tag):
         'page_object': 'galeria',
     }
 
-    return render(request, "{0}/{1}/galleries_by_tag.html".format("desktop" if settings.GL_IS_MOBILE is False else "mobile", settings.SITE_NAME), context)
+    return render(request, "gallery/{0}.html".format(settings.AWESOME_GALLERY_SEARCH_BY_TAGS_TEMPLATE), context)
 
 
 # Create your views here.
@@ -77,12 +72,12 @@ def gallery_view(request, slug):
     page_obj = Paginator(gal.items.filter(enabled=True).order_by('order'), 20)
     page = page_obj.page(1)
 
-    return render(request, '{0}/{1}/gallery.html'.format("desktop" if settings.GL_IS_MOBILE is False else "mobile", settings.SITE_NAME), {
+    return render(request, '{gallery/{0}.html'.format(settings.AWESOME_GALLERY_GALLERY_TEMPLATE), {
         'gallery': gal,
         'related_galeries': gal.related_galeries(json=True),
         'fotos': page,
         'pg_obj': page_obj,
-        'banner_url': settings.BANNER_URL,
+        # 'banner_url': settings.BANNER_URL,
         'item_list_json': [item_obj.dehydrate(excludes=['gallery'], json=True) for item_obj in page.object_list],
         'settings': settings})
 
@@ -175,7 +170,7 @@ def galleries(request, p=None):
 
     range_paginator = get_range_page(int(p), page_obj.num_pages)
 
-    return render(request, '{0}/{1}/galleries.html'.format("desktop" if settings.GL_IS_MOBILE is False else "mobile", settings.SITE_NAME), {
+    return render(request, 'gallery/{0}.html'.format(settings.AWESOME_GALLERY_GALERIES_TEMPLATE), {
         'p': p,
         'po': page_obj,
         'page': page,
@@ -294,7 +289,7 @@ def admin_delete_item_aws(request):
 
 
 @staff_member_required
-def admin_change_status_item(request):
+def admin_change_status_item(request, status='false'):
     if request.method != 'POST':
         raise Http404
 

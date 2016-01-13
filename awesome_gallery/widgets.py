@@ -37,7 +37,7 @@ class GalleryFKWidget(forms.Widget):
     class Media:
         js = (
             '/static/js/gallery/lib/load-image/load-image.all.min.js',
-            '/static/js/libs/require/require-min.js',
+            '/static/gallstatic/js/lib/require/require-min.js',
             '/static/gallstatic/js/amd_config.js',
         )
         css = {'all': (

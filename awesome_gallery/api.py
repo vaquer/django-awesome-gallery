@@ -1,10 +1,11 @@
-from tastypie.resources import ModelResource, ALL_WITH_RELATIONS, ALL
-from tastypie import fields
-from gallery.models import Gallery, Item
 from django.http import HttpResponse
 from django.conf.urls import url
 from tastypie.cache import SimpleCache
 from tastypie.serializers import Serializer
+
+from tastypie.resources import ModelResource, ALL_WITH_RELATIONS, ALL
+from tastypie import fields
+from awesome_gallery.models import Gallery, Item
 
 
 def build_content_type(format, encoding='utf-8'):

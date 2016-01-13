@@ -39,9 +39,9 @@
             'jquery.fileupload-process': 'gallery/lib/jquery/jquery.fileupload-process',
             'jquery.fileupload-image': 'gallery/lib/jquery/jquery.fileupload-image',
             'jquery.fileupload': 'gallery/lib/jquery/jquery.fileupload',
-            'underscore': 'libs/underscore/underscore-min',
-            'backbone': 'libs/backbone/backbone-min',
-            'bootstrap': 'libs/bootstrap/bootstrap.min',
+            'underscore': 'lib/underscore/underscore-min',
+            'backbone': 'lib/backbone/backbone-min',
+            'bootstrap': 'lib/bootstrap/bootstrap.min',
         },
         waitSeconds: 30,
         shim: {

@@ -1,5 +1,4 @@
-from gallery.models import Item, Gallery
-from django.utils import simplejson
+from awesome_gallery.models import Item, Gallery
 
 
 def get_range_page(p, num_pages):

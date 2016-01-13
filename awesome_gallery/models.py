@@ -15,7 +15,7 @@ from django.conf import settings
 from django.utils.text import slugify
 from django.utils.html import format_html
 from .aws import AWSManager
-from .decode import decode_path_admin, decode_path_gal, get_thumb_gal, get_url_safe
+from .decode import get_url_safe
 from .fields import ImageWithThumbsField
 
 Languages = {
@@ -36,7 +36,8 @@ Languages = {
             "order": "Orden",
             "key_name": "Key AWS",
             "display_title": "Mostrar Titulo",
-            "gallery": "Galeria"
+            "gallery": "Galeria",
+            "image": "Imagen"
         },
     },
     "EN": {
@@ -64,18 +65,18 @@ Languages = {
 
 # Create your models here.
 class Gallery(models.Model):
-    name = models.CharField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["gallery"]["name"]), max_length=200)
+    name = models.CharField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["gallery"]["name"]), max_length=200)
     slug = models.SlugField('Slug', max_length=200, editable=False, db_index=True)
-    short_description = models.TextField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["gallery"]["about"]), blank=True, null=True)
+    short_description = models.TextField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["gallery"]["about"]), blank=True, null=True)
 
-    administrator = models.ForeignKey(AuthorModel, verbose_name='{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["gallery"]["administrator"]), null=True, blank=True)
-    date = models.DateField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["gallery"]["date"]), auto_now_add=True, editable=False)
+    administrator = models.ForeignKey(AuthorModel, verbose_name='{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["gallery"]["administrator"]), null=True, blank=True)
+    date = models.DateField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["gallery"]["date"]), auto_now_add=True, editable=False)
 
-    tags = models.ManyToManyField('{0}.{1}'.format(settings.AWESOME_APP_SOURCE_TAG, settings.AWSOME_TAG_MODEL), verbose_name='Tags')
+    tags = models.ManyToManyField('{0}.{1}'.format(settings.AWESOME_APP_BLOG_NAME, settings.AWESOME_APP_MODEL_TAG), verbose_name='Tags')
     ugc = models.BooleanField('UGC', default=False)
 
     high_definition = models.BooleanField('HD', default=True)
-    enabled = models.BooleanField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["gallery"]["enabled"]), default=True)
+    enabled = models.BooleanField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["gallery"]["enabled"]), default=True)
 
     def __unicode__(self):
         return u'{0}'.format(self.slug)
@@ -85,7 +86,7 @@ class Gallery(models.Model):
         return ('single_gallery', (), {'slug': self})
 
     def gallery_permalink(self):
-        link = '<a href="http://{0}{1}" target="_blank">http://{0}{1}</a>'.format(settings.FQDN, self.get_absolute_url())
+        link = '<a href="{0}" target="_blank">{0}</a>'.format(self.get_absolute_url())
         return format_html(link)
     gallery_permalink.allow_tags = True
 
@@ -229,21 +230,21 @@ class Gallery(models.Model):
 
 
 class Item(models.Model):
-    name = models.CharField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["name"]), max_length=200)
+    name = models.CharField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["name"]), max_length=200)
     slug = models.SlugField('Slug', max_length=200, editable=False, unique=True, db_index=True)
-    short_description = models.TextField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["about"]))
+    short_description = models.TextField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["about"]))
     url_video = models.URLField('Path', max_length=250)
-    image = ImageWithThumbsField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["image"]), upload_to="django_awsm_gallery/items", sizes=settings.AWESOME_GALLERY_SIZES)
-    order = models.IntegerField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["order"]), db_index=True)
+    image = ImageWithThumbsField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["image"]), upload_to="django_awsm_gallery/items", sizes=settings.AWESOME_GALLERY_SIZES)
+    order = models.IntegerField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["order"]), db_index=True)
 
-    date = models.DateField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["date"]), auto_now_add=True, editable=False)
-    tags = models.ManyToManyField('{0}.{1}'.format(settings.AWESOME_APP_SOURCE_TAG, settings.AWSOME_TAG_MODEL), verbose_name='Tags')
-    gallery = models.ForeignKey(Gallery, verbose_name='{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["gallery"]), null=True, blank=True, related_name='items', related_query_name='gal_items')
+    date = models.DateField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["date"]), auto_now_add=True, editable=False)
+    tags = models.ManyToManyField('{0}.{1}'.format(settings.AWESOME_APP_BLOG_NAME, settings.AWESOME_APP_MODEL_TAG), verbose_name='Tags')
+    gallery = models.ForeignKey(Gallery, verbose_name='{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["gallery"]), null=True, blank=True, related_name='items', related_query_name='gal_items')
 
     high_definition = models.BooleanField('HD', default=True)
     vertical = models.BooleanField('Vertical', default=False)
-    enabled = models.BooleanField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["enabled"]), default=True)
-    display_title = models.BooleanField('{0}'.format(Languages[settings.AWESOME_LANGUAES_ALERTS]["item"]["display_title"]), default=False)
+    enabled = models.BooleanField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["enabled"]), default=True)
+    display_title = models.BooleanField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["display_title"]), default=False)
 
     def __unicode__(self):
         return u'{0}'.format(self.slug)
@@ -259,10 +260,10 @@ class Item(models.Model):
         content_type = ContentType.objects.get_for_model(self.__class__)
         return urlresolvers.reverse("admin:%s_%s_change" % (content_type.app_label, content_type.model), args=(self.id,))
 
-    def item_preview(self):
-        decode_path_html = decode_path_admin(self.path)
-        return format_html(decode_path_html if decode_path_html is not None else self.path)
-    item_preview.allow_tags = True
+    # def item_preview(self):
+    #     decode_path_html = decode_path_admin(self.path)
+    #     return format_html(decode_path_html if decode_path_html is not None else self.path)
+    # item_preview.allow_tags = True
 
     def item_permalink(self):
         perma = self.get_absolute_url()
