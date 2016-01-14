@@ -236,9 +236,16 @@ def admin_add_item_aws(request):
             output['error'] = "Error: Error at upload file, can't recive the file"
 
         if not output.get('error', False):
-            model_fields = request.body + {'image': file_obj, 'url_video': video, 'enabled': True}
+            model_fields = {
+                'order': request.POST.get('order', 1),
+                'about': request.POST.get('about', 'about'),
+                'administrator': request.POST.get('administrator', 'administrator'),
+                'gallery': request.POST.get('gallery', 'gallery'),
+                'image': file_obj,
+                'url_video': video,
+                'enabled': True}
+
             # Remove tags from initial fields
-            model_fields.pop('tags', None)
             model_fields['high_definition'] = True if model_fields['high_definition'].strip() else False
             model_fields['order'] = int(model_fields['order'])
 
