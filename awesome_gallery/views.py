@@ -260,9 +260,9 @@ def admin_add_item_aws(request):
                         model_tag_instance = ModelTag.objects.get(tag__id=int(tag))
                     except:
                         pass
-
-                    model_tag_instance.save()
-                    item.tags.add(model_tag_instance)
+                    else:
+                        model_tag_instance.save()
+                        item.tags.add(model_tag_instance)
             item.save()
             output['item'] = {"image": item_model.image.url, "id": item_model.id, "order": item_model.order, "admin": item_model.get_admin_url(), 'isVideo': False}
 
