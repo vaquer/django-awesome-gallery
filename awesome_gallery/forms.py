@@ -30,7 +30,7 @@ class GalleryForm(forms.ModelForm):
         fields = ('name', 'short_description', 'administrator', 'tags', 'enabled', 'images',)
         widgets = {
             'tags': FilteredSelectMultiple(
-                  verbose_name=_('Tags'),
+                  verbose_name= 'Tags',
                   is_stacked=False
                 )
         }
