@@ -276,7 +276,7 @@ class Item(models.Model):
 
     def get_foto_thumb(self, size='170x0', attrs=''):
         if not self.is_video():
-            return self.image.url_170x0
+            return self.image.url_470x350
 
     def get_foto_thumb_mobile(self, size='470x0'):
         if not self.is_video():
