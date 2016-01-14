@@ -264,7 +264,7 @@ def admin_add_item_aws(request):
                         model_tag_instance.save()
                         item.tags.add(model_tag_instance)
             item.save()
-            output['item'] = {"image": item_model.image.url, "id": item_model.id, "order": item_model.order, "admin": item_model.get_admin_url(), 'isVideo': False}
+            output['item'] = {"image": item.image.url, "id": item.id, "order": item.order, "admin": item.get_admin_url(), 'isVideo': False}
 
         json_obj = json.dumps(output)
         return HttpResponse(json_obj, content_type="application/json")
