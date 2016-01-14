@@ -246,7 +246,7 @@ def admin_add_item_aws(request):
                 'enabled': True}
 
             # Remove tags from initial fields
-            model_fields['high_definition'] = True if model_fields['high_definition'].strip() else False
+            model_fields['high_definition'] = True if request.POST.get('high_definition', '').strip() else False
             model_fields['order'] = int(model_fields['order'])
 
             # Creating the new Item
