@@ -39,7 +39,7 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
             'click .btn-success': 'sendModificationRequest'
         },
         initialize: function(){
-            this.getCookie();
+            this.getCookie('csrftoken');
         },
         render: function(){
             var self = this;
