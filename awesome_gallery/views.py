@@ -247,7 +247,7 @@ def admin_add_item_aws(request):
             item.save()
 
             # Insert all tags
-            ModelTag = get_model(settings.AWESOME_APP_SOURCE_TAG, settings.AWSOME_TAG_MODEL)
+            ModelTag = get_model(settings.AWESOME_APP_BLOG_NAME, settings.AWESOME_APP_MODEL_TAG)
             for tag in request.POST.get('tags', '').split(','):
                 if tag.strip():
                     try:
