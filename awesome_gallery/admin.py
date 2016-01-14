@@ -11,7 +11,7 @@ class ItemAdmin(admin.ModelAdmin):
     save_on_top = True
     search_fields = ['name', 'slug']
     ordering = ('-date', )
-    raw_id_fields = ('tags', )
+    # raw_id_fields = ('tags', )
     fieldsets = (
         (None, {"fields": ('name', 'short_description', 'administrator', 'order')}),
         ('Items', {"fields": ('img', 'video_source', 'preview')}),
