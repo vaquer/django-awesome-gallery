@@ -239,7 +239,7 @@ def admin_add_item_aws(request):
             model_fields = {
                 'order': request.POST.get('order', 1),
                 'short_description': request.POST.get('about', 'about'),
-                'gallery__id': int(request.POST.get('gallery', 0)),
+                'gallery': Gallery.objects.get(id=int(request.POST.get('gallery', 0))),
                 'image': file_obj,
                 'url_video': video,
                 'enabled': True}
@@ -257,14 +257,14 @@ def admin_add_item_aws(request):
             for tag in request.POST.get('tags', '').split(','):
                 if tag.strip():
                     try:
-                        model_tag_instance = ModelTag.objects.get(tag__id=tag)
+                        model_tag_instance = ModelTag.objects.get(tag__id=int(tag))
                     except:
                         pass
 
                     model_tag_instance.save()
                     item.tags.add(model_tag_instance)
             item.save()
-            output['item'] = {"path": path_aws, "key_name": aws.aws_key_name, "html": item_model.get_foto_thumb(size), "id": item_model.id, "order": item_model.order, "admin": item_model.get_admin_url(), 'isVideo': False}
+            output['item'] = {"image": item_model.image.url, "id": item_model.id, "order": item_model.order, "admin": item_model.get_admin_url(), 'isVideo': False}
 
         json_obj = json.dumps(output)
         return HttpResponse(json_obj, content_type="application/json")
@@ -329,7 +329,7 @@ def admin_adding_description_item(request):
     output = {}
     item_model = get_object_or_404(Item, id=request.POST.get('item_id'))
 
-    item_model.about = urllib.unquote(request.POST.get('descript_item_updt')).encode('utf-8')
+    item_model.short_description = urllib.unquote(request.POST.get('descript_item_updt')).encode('utf-8')
     item_model.save()
     output['ok'] = 'Descricion agregada'
 
