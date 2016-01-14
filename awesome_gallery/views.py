@@ -238,7 +238,7 @@ def admin_add_item_aws(request):
         if not output.get('error', False):
             model_fields = {
                 'order': request.POST.get('order', 1),
-                'about': request.POST.get('about', 'about'),
+                'short_description': request.POST.get('about', 'about'),
                 'administrator': request.POST.get('administrator', 'administrator'),
                 'gallery__id': int(request.POST.get('gallery', 0)),
                 'image': file_obj,

@@ -29,10 +29,7 @@ class GalleryForm(forms.ModelForm):
         model = Gallery
         fields = ('name', 'short_description', 'administrator', 'tags', 'enabled', 'images',)
         widgets = {
-            'tags': FilteredSelectMultiple(
-                  verbose_name= 'Tags',
-                  is_stacked=False
-                )
+            'tags': forms.CheckboxSelectMultiple(verbose_name='Tags')
         }
 
 
