@@ -5,6 +5,7 @@ from .form_fields import GalleryForeignKey
 from .widgets import GalleryFKWidget, PreviewImageGall
 from .aws import AWSManager
 from django.conf import settings
+from django.contrib.admin.widgets import FilteredSelectMultiple
 
 
 class ItemForm(forms.ModelForm):
@@ -27,6 +28,12 @@ class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
         fields = ('name', 'short_description', 'administrator', 'tags', 'enabled', 'images',)
+        widgets = {
+            'tags': FilteredSelectMultiple(
+                  verbose_name=_('Tags'),
+                  is_stacked=False
+                )
+        }
 
 
 class UGCItemForm(forms.ModelForm):
