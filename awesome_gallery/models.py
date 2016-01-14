@@ -233,7 +233,7 @@ class Item(models.Model):
     name = models.CharField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["name"]), max_length=200)
     slug = models.SlugField('Slug', max_length=200, editable=False, unique=True, db_index=True)
     short_description = models.TextField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["about"]))
-    url_video = models.URLField('Path', max_length=250)
+    url_video = models.URLField('Path', max_length=250, blank=True, null=True)
     image = ImageWithThumbsField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["image"]), upload_to="django_awsm_gallery/items", sizes=settings.AWESOME_GALLERY_SIZES)
     order = models.IntegerField('{0}'.format(Languages[settings.AWESOME_LANGUAGES_ALERTS]["item"]["order"]), db_index=True)
 
