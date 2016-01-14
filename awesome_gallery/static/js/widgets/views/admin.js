@@ -38,12 +38,38 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
             'click .btn-success': 'sendModificationRequest'
         },
         initialize: function(){
+            function csrfSafeMethod(method) {
+                // these HTTP methods do not require CSRF protection
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
         },
         render: function(){
             var self = this;
             this.nextorder = this.$el.find('ul.row_gallery').find('li.item-gallery').length;
             this.currentOrder = this.nextorder;
             this.fileManager();
+        },
+        getCookie: function (name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
         },
         clickImage: function(e){
             $('.messages').removeClass('ok_request').removeClass('error_request');
