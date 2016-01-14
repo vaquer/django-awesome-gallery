@@ -20,6 +20,7 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
         preOrder: null,
         changeOrder: false,
         isVideo: false,
+        csrftoken: null,
         events:{
             'click .item-gallery': 'clickImage',
             'submit #form-item': 'submitEvent',
@@ -38,6 +39,11 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
             'click .btn-success': 'sendModificationRequest'
         },
         initialize: function(){
+            this.getCookie();
+        },
+        render: function(){
+            var self = this;
+
             function csrfSafeMethod(method) {
                 // these HTTP methods do not require CSRF protection
                 return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -45,16 +51,16 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
             $.ajaxSetup({
                 beforeSend: function(xhr, settings) {
                     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                        xhr.setRequestHeader("X-CSRFToken", self.csrftoken);
                     }
                 }
             });
-        },
-        render: function(){
-            var self = this;
+            
             this.nextorder = this.$el.find('ul.row_gallery').find('li.item-gallery').length;
             this.currentOrder = this.nextorder;
             this.fileManager();
+
+
         },
         getCookie: function (name) {
             var cookieValue = null;
@@ -69,7 +75,7 @@ define(['jquery', 'underscore', 'backbone', 'GallSettings',
                     }
                 }
             }
-            return cookieValue;
+            this.csrftoken = cookieValue;
         },
         clickImage: function(e){
             $('.messages').removeClass('ok_request').removeClass('error_request');
