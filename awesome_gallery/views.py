@@ -239,7 +239,6 @@ def admin_add_item_aws(request):
             model_fields = {
                 'order': request.POST.get('order', 1),
                 'short_description': request.POST.get('about', 'about'),
-                'administrator': request.POST.get('administrator', 'administrator'),
                 'gallery__id': int(request.POST.get('gallery', 0)),
                 'image': file_obj,
                 'url_video': video,
@@ -258,9 +257,9 @@ def admin_add_item_aws(request):
             for tag in request.POST.get('tags', '').split(','):
                 if tag.strip():
                     try:
-                        model_tag_instance = ModelTag.objects.get(tag=tag)
+                        model_tag_instance = ModelTag.objects.get(tag__id=tag)
                     except:
-                        model_tag_instance = ModelTag(tag=tag)
+                        pass
 
                     model_tag_instance.save()
                     item.tags.add(model_tag_instance)
