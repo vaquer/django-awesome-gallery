@@ -52,7 +52,7 @@ class GalleryAdmin(admin.ModelAdmin):
     save_on_top = True
     search_fields = ['name', 'slug']
     ordering = ('-date', )
-    raw_id_fields = ('tags', )
+    # raw_id_fields = ('tags', )
 
     def save_model(self, request, obj, form, change):
         obj.save()

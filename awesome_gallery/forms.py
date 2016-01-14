@@ -28,9 +28,6 @@ class GalleryForm(forms.ModelForm):
     class Meta:
         model = Gallery
         fields = ('name', 'short_description', 'administrator', 'tags', 'enabled', 'images',)
-        widgets = {
-            'tags': forms.CheckboxSelectMultiple()
-        }
 
 
 class UGCItemForm(forms.ModelForm):
